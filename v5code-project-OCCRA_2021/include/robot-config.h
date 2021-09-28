@@ -6,8 +6,8 @@ extern brain Brain;
 extern controller Controller1;
 extern limit LimitSwitchA;
 extern motor_group DrivePort1and2;
-extern motor_group DrivePort10and11;
-extern motor IntakeMotor9;
+extern motor_group DrivePort11and12;
+extern motor IntakeMotor10;
 extern motor_group ShootMotors3n4;
 
 /**
