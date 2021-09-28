@@ -10,22 +10,31 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// Rightmotor           motor         1               
 // Controller1          controller                    
-// LeftMotor            motor         2               
-// Motor3               motor         3               
 // LimitSwitchA         limit         A               
+// DrivePort1and2       motor_group   1, 2            
+// DrivePort10and11     motor_group   10, 11          
+// IntakeMotor9         motor         9               
+// ShootMotors3n4       motor_group   3, 4            
 // ---- END VEXCODE CONFIGURED DEVICES ----
+
+/* Intake Motor is Port 9
+* Top shooting motor is port 4
+* Bottom shooting motor is port 3
+* Drivetrain uses ports 1 and 2 for one side. Ports 10 and 11 for the other.
+*/
 
 
 #include "vex.h"
 
 using namespace vex;
 int velocity = 75;
-void stop() {Motor3.stop(); }
-void start() {Motor3.spin(forward);}
-void speedup() {Motor3.setVelocity(velocity + 25, percent); }
-void slowdown() {Motor3.setVelocity(velocity - 25, percent); }
+void stop() {ShootMotors3n4.stop(); }
+void start() {ShootMotors3n4.spin(forward);}
+void speedup() {ShootMotors3n4.setVelocity(velocity + 25, percent); }
+void slowdown() {ShootMotors3n4.setVelocity(velocity - 25, percent); }
+void intake() {IntakeMotor9.spin(forward);}
+void stopintake() {IntakeMotor9.stop(); }
 
 int main() {
   vexcodeInit();   
@@ -33,10 +42,11 @@ int main() {
 Controller1.ButtonUp.pressed(speedup);
 Controller1.ButtonDown.pressed(slowdown);
 
-  Motor3.setVelocity(velocity,rpm);
+  ShootMotors3n4.setVelocity(velocity,rpm);
 
-  LimitSwitchA.pressed(stop);
-
+Controller1.ButtonL2.pressed(intake);
+LimitSwitchA.pressed(stopintake);
+ 
  Controller1.ButtonR2.pressed(start);
  Controller1.ButtonR1.pressed(stop);
  
@@ -47,19 +57,19 @@ Controller1.ButtonDown.pressed(slowdown);
     int rightMotorSpeed = Controller1.Axis1.position() - Controller1.Axis3.position();
 
     if (abs(leftMotorSpeed) < deadband) {
-      LeftMotor.setVelocity(0, percent);
+      DrivePort1and2.setVelocity(0, percent);
     } else {
-      LeftMotor.setVelocity(leftMotorSpeed, percent);
+      DrivePort1and2.setVelocity(leftMotorSpeed, percent);
     }
 
     if (abs(rightMotorSpeed) < deadband) {
-      Rightmotor.setVelocity(0, percent);
+      DrivePort10and11.setVelocity(0, percent);
     } else {
-      Rightmotor.setVelocity(rightMotorSpeed, percent);
+      DrivePort10and11.setVelocity(rightMotorSpeed, percent);
     }
 
-    LeftMotor.spin(forward);
-    Rightmotor.spin(forward);
+    DrivePort1and2.spin(forward);
+    DrivePort10and11.spin(forward);
 
    
   }

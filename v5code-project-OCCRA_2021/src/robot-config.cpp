@@ -8,11 +8,18 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
-motor Rightmotor = motor(PORT1, ratio18_1, false);
 controller Controller1 = controller(primary);
-motor LeftMotor = motor(PORT2, ratio18_1, false);
-motor Motor3 = motor(PORT3, ratio18_1, false);
 limit LimitSwitchA = limit(Brain.ThreeWirePort.A);
+motor DrivePort1and2MotorA = motor(PORT1, ratio18_1, false);
+motor DrivePort1and2MotorB = motor(PORT2, ratio18_1, false);
+motor_group DrivePort1and2 = motor_group(DrivePort1and2MotorA, DrivePort1and2MotorB);
+motor DrivePort10and11MotorA = motor(PORT10, ratio18_1, false);
+motor DrivePort10and11MotorB = motor(PORT11, ratio18_1, false);
+motor_group DrivePort10and11 = motor_group(DrivePort10and11MotorA, DrivePort10and11MotorB);
+motor IntakeMotor9 = motor(PORT9, ratio18_1, true);
+motor ShootMotors3n4MotorA = motor(PORT3, ratio18_1, false);
+motor ShootMotors3n4MotorB = motor(PORT4, ratio18_1, true);
+motor_group ShootMotors3n4 = motor_group(ShootMotors3n4MotorA, ShootMotors3n4MotorB);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
