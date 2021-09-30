@@ -10,12 +10,12 @@ brain  Brain;
 // VEXcode device constructors
 controller Controller1 = controller(primary);
 limit LimitSwitchA = limit(Brain.ThreeWirePort.A);
-motor DrivePort1and2MotorA = motor(PORT1, ratio18_1, false);
-motor DrivePort1and2MotorB = motor(PORT2, ratio18_1, false);
-motor_group DrivePort1and2 = motor_group(DrivePort1and2MotorA, DrivePort1and2MotorB);
-motor DrivePort11and12MotorA = motor(PORT12, ratio18_1, false);
-motor DrivePort11and12MotorB = motor(PORT11, ratio18_1, false);
-motor_group DrivePort11and12 = motor_group(DrivePort11and12MotorA, DrivePort11and12MotorB);
+motor leftDrivePort1and2MotorA = motor(PORT1, ratio18_1, false);
+motor leftDrivePort1and2MotorB = motor(PORT2, ratio18_1, false);
+motor_group leftDrivePort1and2 = motor_group(leftDrivePort1and2MotorA, leftDrivePort1and2MotorB);
+motor righDrivePort11and12MotorA = motor(PORT12, ratio18_1, false);
+motor righDrivePort11and12MotorB = motor(PORT11, ratio18_1, false);
+motor_group righDrivePort11and12 = motor_group(righDrivePort11and12MotorA, righDrivePort11and12MotorB);
 motor ShootMotors3n4MotorA = motor(PORT3, ratio18_1, false);
 motor ShootMotors3n4MotorB = motor(PORT4, ratio18_1, true);
 motor_group ShootMotors3n4 = motor_group(ShootMotors3n4MotorA, ShootMotors3n4MotorB);
