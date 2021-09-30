@@ -27,7 +27,7 @@ void autoIntake() {
 while (Vision8.objects[1].exists) { // reports if the sensor detects it
 double xCoordinate = Vision8.objects[1].centerX; // finds its x coordinate
 double yCoordinate = Vision8.objects[1].centerY; // finds its y coordinate
-if (xCoordinate< 158) { leftDrivePort1and2.spinToPosition(5, degrees); }
+if (xCoordinate< 158) { leftDrivePort1and2.spinToPosition(5, degrees); } //turn towards ball
 if (xCoordinate> 158) { righDrivePort11and12.spinToPosition(5, degrees); }
 if (yCoordinate < 160) {                          // move towards ball if its below cameras 160 y coordinate
     leftDrivePort1and2.spinFor(forward, 90, degrees); ;
