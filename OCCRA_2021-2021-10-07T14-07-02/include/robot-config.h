@@ -21,8 +21,9 @@ extern motor29 intakeMotorC;
 extern motor29 InsideintakeMotorD;
 extern motor29 topShootF;
 extern motor29 BottomShootG;
-extern motor TestingMotor1;
-extern motor TestingMotor2;
+extern motor TestingMotorLeft;
+extern motor TestingMotorRight;
+extern motor TESTINTALEMOTOR3;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

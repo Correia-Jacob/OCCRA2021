@@ -20,8 +20,9 @@ motor29 intakeMotorC = motor29(Brain.ThreeWirePort.C, true);
 motor29 InsideintakeMotorD = motor29(Brain.ThreeWirePort.E, true);
 motor29 topShootF = motor29(Brain.ThreeWirePort.F, true);
 motor29 BottomShootG = motor29(Brain.ThreeWirePort.G, false);
-motor TestingMotor1 = motor(PORT1, ratio18_1, false);
-motor TestingMotor2 = motor(PORT2, ratio18_1, false);
+motor TestingMotorLeft = motor(PORT1, ratio18_1, false);
+motor TestingMotorRight = motor(PORT2, ratio18_1, true);
+motor TESTINTALEMOTOR3 = motor(PORT3, ratio18_1, false);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
