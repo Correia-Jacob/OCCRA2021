@@ -32,9 +32,9 @@ Brain.Screen.clearLine();
 Brain.Screen.print("Starting Autointake");
 TestingMotorRight.stop(); 
 TestingMotorLeft.stop();
-TestingMotorLeft.setVelocity(100, percent);
-TestingMotorRight.setVelocity(100, percent);
 while (true) {
+ TestingMotorLeft.setVelocity(70, percent);
+ TestingMotorRight.setVelocity(70, percent);
  Vision8.takeSnapshot(0);
  if (Vision8.largestObject.exists) {
 if (Vision8.objects[0].centerX < 140) {
@@ -47,18 +47,14 @@ if (Vision8.objects[0].centerX > 185) {
    Brain.Screen.print("Turning right");
    TestingMotorLeft.spinFor(forward, 180, degrees);
 }
-if (Vision8.objects[0].centerY < 160 &&  Vision8.objects[0].centerX < 185
-&& 140 < Vision8.objects[0].centerX ) {
+if (Vision8.objects[0].centerX < 185 && 140 < Vision8.objects[0].centerX ) {
    Brain.Screen.newLine();   
-   Brain.Screen.print("Forward"); 
+   Brain.Screen.print("Forward");
+   TestingMotorLeft.setVelocity(100, percent);
+   TestingMotorRight.setVelocity(100, percent);
    TESTINTALEMOTOR3.spin(forward);
    TestingMotorRight.spin(forward); 
    TestingMotorLeft.spin(forward); 
-}
-else{
-   TestingMotorLeft.stop();
-   TestingMotorRight.stop();
-   
 }
 if (Controller1.ButtonB.pressing()) { 
    Brain.Screen.newLine();
