@@ -26,40 +26,43 @@ void stopintake() {
  intakeMotorC.stop(); 
  InsideintakeMotorD.stop();
 }
-
 void autoIntake() {
 Brain.Screen.clearLine();
 Brain.Screen.print("Starting Autointake");
-TestingMotorRight.stop(); 
-TestingMotorLeft.stop();
+int degreesToTurn;
 while (true) {
  TestingMotorLeft.setVelocity(70, percent);
  TestingMotorRight.setVelocity(70, percent);
  Vision8.takeSnapshot(0);
  if (Vision8.largestObject.exists) {
-if (Vision8.objects[0].centerX < 140) {
+if (Vision8.objects[0].centerX < 138) {
    Brain.Screen.newLine();
    Brain.Screen.print("Turning left");
-   TestingMotorRight.spinFor(forward, 180, degrees); 
+   degreesToTurn = 158 - Vision8.objects[0].centerX;
+   TestingMotorRight.spinFor(forward, (degreesToTurn*5.5), degrees); 
 } 
-if (Vision8.objects[0].centerX > 185) {
+if (Vision8.objects[0].centerX > 178) {
    Brain.Screen.newLine(); 
    Brain.Screen.print("Turning right");
-   TestingMotorLeft.spinFor(forward, 180, degrees);
+   degreesToTurn = Vision8.objects[0].centerX - 158;
+   TestingMotorLeft.spinFor(forward, (degreesToTurn*5.5), degrees);
 }
-if (Vision8.objects[0].centerX < 185 && 140 < Vision8.objects[0].centerX ) {
+if (Vision8.objects[0].centerX < 178 && 138 < Vision8.objects[0].centerX ) {
    Brain.Screen.newLine();   
    Brain.Screen.print("Forward");
    TestingMotorLeft.setVelocity(100, percent);
    TestingMotorRight.setVelocity(100, percent);
    TESTINTALEMOTOR3.spin(forward);
    TestingMotorRight.spin(forward); 
-   TestingMotorLeft.spin(forward); 
+   TestingMotorLeft.spin(forward);
 }
 if (Controller1.ButtonB.pressing()) { 
    Brain.Screen.newLine();
    Brain.Screen.print("Ending Autointake");
    TESTINTALEMOTOR3.stop();
+   TestingMotorRight.stop(); 
+   TestingMotorLeft.stop(); 
+
    break;
 }
  LimitSwitchD.pressed(stopintake);
@@ -70,7 +73,13 @@ if (Controller1.ButtonB.pressing()) {
 
    break;
 }
-}}}
+}
+else {
+  Brain.Screen.newLine();
+  Brain.Screen.print("Object not found. Turning Right.");
+  TestingMotorLeft.spinFor(forward, 575, degrees); 
+}
+}}
 
 void stopShooter() {
  topShootF.stop(); 
