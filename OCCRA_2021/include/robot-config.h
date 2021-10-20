@@ -6,7 +6,7 @@ using signature = vision::signature;
 
 // VEXcode devices
 extern controller Controller1;
-extern limit LimitSwitchD;
+extern limit limitSwitchD;
 extern signature Vision8__SIG_1;
 extern signature Vision8__SIG_2;
 extern signature Vision8__SIG_3;
@@ -18,12 +18,11 @@ extern vision Vision8;
 extern motor29 rightMotorB;
 extern motor29 leftMotorA;
 extern motor29 intakeMotorC;
-extern motor29 InsideintakeMotorD;
+extern motor29 InsideintakeMotorE;
 extern motor29 topShootF;
 extern motor29 BottomShootG;
-extern motor TestingMotorLeft;
-extern motor TestingMotorRight;
-extern motor TESTINTALEMOTOR3;
+extern motor testingShootingMotor;
+extern controller Controller2;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
