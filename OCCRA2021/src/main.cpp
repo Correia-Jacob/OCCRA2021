@@ -13,23 +13,25 @@ shootingMotor2       motor29       G
 #include <sstream>
 using namespace vex;
 
-int velocity = 75;
-std::stringstream velocityChange;  
-std::string velocityString;
+int velocity = 100;
 
 void speedUp() {
- velocity += 25;
+ velocity += 10;
  Brain.Screen.clearLine();
+ std::stringstream velocityChange;  
+ std::string velocityString;
  velocityChange << velocity;
  velocityChange >> velocityString;
- Brain.Screen.print("Velocity increased to " + velocityString + "%");
+ Brain.Screen.print(("Velocity increased to " + velocityString + "%").c_str());
 }
 void slowDown() {
- velocity -= 25;
+ velocity -= 10;
  Brain.Screen.clearLine();
+ std::stringstream velocityChange;  
+ std::string velocityString;
  velocityChange << velocity;
  velocityChange >> velocityString;
- Brain.Screen.print("Velocity decreased to " + velocityString + "%");
+ Brain.Screen.print(("Velocity decreased to " + velocityString + "%").c_str());
 } 
 
 int main() {
@@ -37,58 +39,44 @@ int main() {
  Controller1.ButtonUp.pressed(speedUp);
  Controller1.ButtonDown.pressed(slowDown);
 
- shootingMotor1.setVelocity(velocity, percent);
- shootingMotor2.setVelocity(velocity, percent);
- intakeMotor.setVelocity(velocity, percent);
- chamberMotor.setVelocity(velocity, percent);
-
-
  while (true) {
+   shootingMotor1.setVelocity(velocity, percent);
+   shootingMotor2.setVelocity(velocity, percent);
+   intakeMotor.setVelocity(velocity, percent);
+   chamberMotor.setVelocity(velocity, percent);
+
    if (Controller1.ButtonR2.pressing()) { // Shoot ball
    shootingMotor1.spin(forward);
    shootingMotor2.spin(forward);
    }
-   else {
-     shootingMotor1.stop();
-     shootingMotor2.stop();
-    }
- 
-   if (Controller1.ButtonR1.pressing()) { // Reverse Shooters if ball is stuck
+   else if (Controller1.ButtonR1.pressing()) { // Reverse Shooters if ball is stuck
      shootingMotor1.spin(reverse);
      shootingMotor2.spin(reverse);
      }
-     else {
+    else {
        shootingMotor1.stop();
        shootingMotor2.stop();
        }
-   
+  
    if (Controller1.ButtonL2.pressing()) { // Intake ball
      intakeMotor.spin(forward);
      }
-     else {
-       intakeMotor.stop();
+     else if (Controller1.ButtonL1.pressing()) { // Reverse Intake if ball is stuck
+       intakeMotor.spin(reverse);
        }
-   
-   if (Controller1.ButtonL1.pressing()) { // Reverse Intake if ball is stuck
-     intakeMotor.spin(reverse);
-     }
-     else {
-       intakeMotor.stop();
-       }
-  
+       else {
+         intakeMotor.stop();
+         }
+     
    if (Controller1.ButtonA.pressing()) { // Start Chamber
      chamberMotor.spin(forward);
      }
-       else {
-       chamberMotor.stop();
-       }
-     
-   if (Controller1.ButtonB.pressing()) { // Reverse Chamber
-     chamberMotor.spin(reverse);
-     }
-       else {
-       chamberMotor.stop();
-       }
+       else if (Controller1.ButtonB.pressing()) { // Reverse Chamber
+         chamberMotor.spin(reverse);
+         }
+         else {
+           chamberMotor.stop();
+           }
 
     
    //Joystick drive
