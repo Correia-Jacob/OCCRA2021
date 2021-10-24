@@ -16,22 +16,26 @@ using namespace vex;
 int velocity = 100;
 
 void speedUp() {
- velocity += 10;
- Brain.Screen.clearLine();
- std::stringstream velocityChange;  
- std::string velocityString;
- velocityChange << velocity;
- velocityChange >> velocityString;
- Brain.Screen.print(("Velocity increased to " + velocityString + "%").c_str());
+ if (velocity < 100) {
+   velocity += 10;
+   Brain.Screen.clearLine();
+   std::stringstream velocityChange;  
+   std::string velocityString;
+   velocityChange << velocity;
+   velocityChange >> velocityString;
+   Brain.Screen.print(("Velocity increased to " + velocityString + "%").c_str());
+   }
 }
 void slowDown() {
- velocity -= 10;
- Brain.Screen.clearLine();
- std::stringstream velocityChange;  
- std::string velocityString;
- velocityChange << velocity;
- velocityChange >> velocityString;
- Brain.Screen.print(("Velocity decreased to " + velocityString + "%").c_str());
+ if (velocity > 0){
+   velocity -= 10;
+   Brain.Screen.clearLine();
+   std::stringstream velocityChange;  
+   std::string velocityString;
+   velocityChange << velocity;
+   velocityChange >> velocityString;
+   Brain.Screen.print(("Velocity decreased to " + velocityString + "%").c_str());
+   }
 } 
 
 int main() {
@@ -80,7 +84,6 @@ int main() {
 
     
    //Joystick drive
-  
    int leftMotorSpeed = Controller1.Axis1.position() + Controller1.Axis3.position();
    int rightMotorSpeed = Controller1.Axis1.position() - Controller1.Axis3.position();
 
